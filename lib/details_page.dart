@@ -13,7 +13,7 @@ class DetailsPage extends StatelessWidget {
         title: const Text('Detalhes'),
       ),
 
-      // Receita 1 - Construção de Objetos de Interface Gráfica
+      // receita 1 - construindo objetos gráficos
       body: Padding(
         padding: const EdgeInsets.all(16),
 
