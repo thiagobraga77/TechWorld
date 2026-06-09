@@ -10,6 +10,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('TechWorld'),
+        backgroundColor: Colors.blueAccent,
         actions: [
           // botão para carregar as notícias, alterando o estado do ValueNotifier.
           IconButton(
