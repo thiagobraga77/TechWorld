@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'news_service.dart'; 
+import 'sidebar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -18,9 +19,11 @@ class HomePage extends StatelessWidget {
             onPressed: () {
               newsService.carregarNoticias(); // mudar o estado
             },
-          )
+          ),
         ],
       ),
+      
+      drawer: AppDrawer(),
 
       // parte das receitas 5 e 6 - gerência de estado usando ValueNotifier e ValueListenableBuilder
       body: ValueListenableBuilder<List<Map<String, String>>>(
