@@ -27,7 +27,7 @@ class AppDrawer extends StatelessWidget {
             title: const Text("Início"),
 
             onTap: () {
-              Navigator.pop(context);
+              Get.back();
               Get.toNamed('/');
             },
           ),
@@ -37,7 +37,7 @@ class AppDrawer extends StatelessWidget {
             title: const Text("Notícias"),
 
             onTap: () {
-              Navigator.pop(context);
+              Get.back();
               Get.toNamed('/news');
             },
           ),
@@ -47,7 +47,7 @@ class AppDrawer extends StatelessWidget {
             title: const Text("Configurações"),
 
             onTap: () {
-              Navigator.pop(context);
+              Get.back();
               Get.toNamed('/settings');
             },
           ),
