@@ -13,14 +13,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'News App',
+      title: 'TechWorld',
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
 
-      // Receita 9A - Gerência de Rotas
-      routes: {
-        '/': (context) => const HomePage(),
-        '/details': (context) => const DetailsPage(),
-      },
+      //receita 9a - estrutura de rotas usando getPages
+      initialRoute: '/',
+      getPages: [
+        GetPage(name: '/', page: () => const HomePage()),
+        GetPage(name: '/details', page: () => const DetailsPage()),
+        // rotas temporárias para se caso der erro ao acessar o menu lateral
+        GetPage(name: '/news', page: () => const HomePage()),
+        GetPage(name: '/settings', page: () => const Scaffold(body: Center(child: Text('Configurações')),)) // rota para a home, caso queira acessar diretamente
+      ],
     );
   }
 }
