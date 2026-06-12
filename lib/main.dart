@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:projeto/settings_page.dart';
 import 'home_page.dart';
 import 'details_page.dart';
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/details', page: () => const DetailsPage()),
         // rotas temporárias para se caso der erro ao acessar o menu lateral
         GetPage(name: '/news', page: () => const HomePage()),
-        GetPage(name: '/settings', page: () => const Scaffold(body: Center(child: Text('Configurações')),)) // rota para a home, caso queira acessar diretamente
+        GetPage(name: '/settings', page: () => const SettingsPage()), // rota para a home, caso queira acessar diretamente
       ],
     );
   }
