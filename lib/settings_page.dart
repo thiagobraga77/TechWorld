@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:projeto/config_service.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -8,7 +10,6 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Configurações"),
-        backgroundColor: Colors.blueAccent,
       ),
 
       body: ListView(
@@ -17,37 +18,52 @@ class SettingsPage extends StatelessWidget {
         children: [
           const Text(
             "Configurações Gerais",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
 
           const SizedBox(height: 16),
 
-          Card(
-            child: ListTile(
-              leading: const Icon(Icons.palette),
-              title: const Text("Cor de fundo"),
-              subtitle: const Text(
-                "Escolha a cor de fundo do aplicativo",
-              ),
-              trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: () {
-                // Implementar futuramente
-              },
-            ),
+          TextButton.icon(
+            onPressed: () {
+              Get.back();
+              Get.toNamed('/');
+            },
+            icon: const Icon(Icons.arrow_back),
+            label: const Text("Voltar ao menu"),
           ),
 
+          Card(
+            child: ExpansionTile(
+              leading: const Icon(Icons.palette),
+              title: const Text("Cor de Fundo"),
+
+              children: [
+                ListTile(
+                  title: const Text("Escuro"),
+
+                  onTap: () {
+                    configService.setBlackTheme();
+                  },
+                ),
+              
+              ListTile(
+                  title: const Text("Azul"),
+
+                  onTap: () {
+                    configService.setBlueTheme();
+                  },
+                ),
+              ],
+            ),
+          ),
+          
           const SizedBox(height: 12),
 
           Card(
             child: ListTile(
               leading: const Icon(Icons.language),
               title: const Text("Idioma"),
-              subtitle: const Text(
-                "Escolha o idioma do aplicativo",
-              ),
+              subtitle: const Text("Escolha o idioma do aplicativo"),
               trailing: const Icon(Icons.arrow_forward_ios),
               onTap: () {
                 // Implementar futuramente
