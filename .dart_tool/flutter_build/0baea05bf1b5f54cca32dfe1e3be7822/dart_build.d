@@ -1,0 +1,1 @@
+ /home/thiago/TechWorld/.dart_tool/flutter_build/0baea05bf1b5f54cca32dfe1e3be7822/dart_build_result.json: 
