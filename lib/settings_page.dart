@@ -8,9 +8,7 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Configurações"),
-      ),
+      appBar: AppBar(title: const Text("Configurações")),
 
       body: ListView(
         padding: const EdgeInsets.all(16),
@@ -35,28 +33,45 @@ class SettingsPage extends StatelessWidget {
           Card(
             child: ExpansionTile(
               leading: const Icon(Icons.palette),
-              title: const Text("Cor de Fundo"),
+              title: const Text("TEMAS"),
 
               children: [
-                ListTile(
-                  title: const Text("Escuro"),
+                ValueListenableBuilder(
+                  valueListenable: configService.currentThemeName,
+                  builder: (context, currentTheme, child) {
+                    return Column(
+                      children: [
+                        ListTile(
+                          title: const Text("Claro"),
 
-                  onTap: () {
-                    configService.setBlackTheme();
-                  },
-                ),
-              
-              ListTile(
-                  title: const Text("Azul"),
+                          trailing: currentTheme == "light"
+                              ? const Icon(Icons.check)
+                              : null,
 
-                  onTap: () {
-                    configService.setBlueTheme();
+                          onTap: () {
+                            configService.setLightTheme();
+                          },
+                        ),
+
+                        ListTile(
+                          title: const Text("Escuro"),
+
+                          trailing: currentTheme == "black"
+                              ? const Icon(Icons.check_box)
+                              : null,
+
+                          onTap: () {
+                            configService.setBlackTheme();
+                          },
+                        ),
+                      ],
+                    );
                   },
                 ),
               ],
             ),
           ),
-          
+
           const SizedBox(height: 12),
 
           Card(
