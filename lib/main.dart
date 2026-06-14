@@ -5,8 +5,12 @@ import 'home_page.dart';
 import 'details_page.dart';
 import 'package:projeto/config_service.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const MyApp());
+
+  await configService.loadTheme();
 }
 
 class MyApp extends StatelessWidget {
@@ -23,22 +27,16 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: currentTheme,
 
-        //receita 9a - estrutura de rotas usando getPages
+          //receita 9a - estrutura de rotas usando getPages
           initialRoute: '/',
           getPages: [
-            GetPage(
-              name: '/', 
-              page: () => const HomePage()),
+            GetPage(name: '/', page: () => const HomePage()),
 
-            GetPage(
-              name: '/details', 
-              page: () => const DetailsPage()),
+            GetPage(name: '/details', page: () => const DetailsPage()),
+
             // rotas temporárias para se caso der erro ao acessar o menu lateral
-            
-            GetPage(      
-              name: '/news',
-              page: () => const HomePage()),
-            
+            GetPage(name: '/news', page: () => const HomePage()),
+
             GetPage(
               name: '/settings',
               page: () => const SettingsPage(),
