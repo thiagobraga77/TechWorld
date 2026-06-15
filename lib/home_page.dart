@@ -3,9 +3,18 @@ import 'package:get/get.dart';
 import 'news_service.dart';
 import 'sidebar.dart';
 import 'package:projeto/config_service.dart';
+import 'search_bar.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  String _termoPesquisa = '';
+  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,27 +33,23 @@ class HomePage extends StatelessWidget {
             itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
               const PopupMenuItem<String>(
                 value: 'pt',
-                child: Text('Notícias em Português'),
+                child: const Text('Notícias em Português'),
               ),
               const PopupMenuItem<String>(
                 value: 'en',
-                child: Text('Notícias em Inglês'),
+                child: const Text('Notícias em Inglês'),
               ),
             ],
           ),
-          // botão para carregar as notícias, alterando o estado do ValueNotifier.
           IconButton(
             icon: const Icon(Icons.refresh),
             onPressed: () {
-              newsService.carregarNoticias(isRefresh: true); // mudar o estado
+              newsService.carregarNoticias(isRefresh: true);
             },
           ),
         ],
       ),
-
       drawer: const AppDrawer(),
-
-      // verifica se o app está carregando os dados da api
       body: ValueListenableBuilder<bool>(
         valueListenable: newsService.loadingNotifier,
         builder: (context, isLoading, child) {
@@ -63,41 +68,67 @@ class HomePage extends StatelessWidget {
                 );
               }
 
-              // receitas 1 e 4 - exibe a lista de notícias
-              // construção do feed de notícias
-              return NotificationListener<ScrollNotification>(
-                onNotification: (ScrollNotification scrollInfo) {
-                  if (scrollInfo.metrics.pixels ==
-                      scrollInfo.metrics.maxScrollExtent) {
-                    newsService.carregarNoticias(isRefresh: false);
-                  }
-                  return false;
-                },
-                child: ListView.builder(
-                  itemCount: noticias.length,
-                  itemBuilder: (context, index) {
-                    final noticia = noticias[index];
+              final noticiasFiltradas = _termoPesquisa.isEmpty
+                  ? noticias
+                  : noticias.where((noticia) => (noticia['titulo'] ?? '')
+                      .toLowerCase()
+                      .contains(_termoPesquisa.toLowerCase())).toList();
 
-                    return Card(
-                      margin: const EdgeInsets.all(10),
-                      child: ListTile(
-                        // exibindo a imagem
-                        leading: ClipRRect(
-                          borderRadius: BorderRadius.circular(4),
-                          child: Image.network(
-                            noticia['image']!,
-                            width: 80,
-                            height: 80,
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Container(
-                                width: 80,
-                                height: 80,
-                                color: Colors.grey[300],
-                                child: const Icon(
-                                  Icons.broken_image,
-                                  size: 35,
-                                  color: Colors.grey,
+              return Column(
+                children: [
+                  SearchBarWidget(
+                    controller: _controller,
+                    onChanged: (valor) {
+                      setState(() {
+                        _termoPesquisa = valor;
+                      });
+                    },
+                    onClear: () {
+                      setState(() {
+                        _termoPesquisa = '';
+                        _controller.clear();
+                      });
+                      FocusScope.of(context).unfocus();
+                    },
+                  ),
+                  Expanded(
+                    child: NotificationListener<ScrollNotification>(
+                      onNotification: (ScrollNotification scrollInfo) {
+                        if (scrollInfo.metrics.pixels ==
+                            scrollInfo.metrics.maxScrollExtent) {
+                          if (_termoPesquisa.isEmpty) {
+                            newsService.carregarNoticias(isRefresh: false);
+                          }
+                        }
+                        return false;
+                      },
+                      child: ListView.builder(
+                        itemCount: noticiasFiltradas.length,
+                        itemBuilder: (context, index) {
+                          final noticia = noticiasFiltradas[index];
+
+                          return Card(
+                            margin: const EdgeInsets.all(10),
+                            child: ListTile(
+                              leading: ClipRRect(
+                                borderRadius: BorderRadius.circular(4),
+                                child: Image.network(
+                                  noticia['image']!,
+                                  width: 80,
+                                  height: 80,
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return Container(
+                                      width: 80,
+                                      height: 80,
+                                      color: Colors.grey[300],
+                                      child: const Icon(
+                                        Icons.broken_image,
+                                        size: 35,
+                                        color: Colors.grey,
+                                      ),
+                                    );
+                                  },
                                 ),
                               );
                             },
@@ -119,9 +150,9 @@ class HomePage extends StatelessWidget {
                           Get.toNamed('/details', arguments: noticia);
                         },
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  ),
+                ],
               );
             },
           );
