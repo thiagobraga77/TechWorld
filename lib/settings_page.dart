@@ -11,7 +11,7 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Configurações",
+          "settings".tr,
         )
       ),
 

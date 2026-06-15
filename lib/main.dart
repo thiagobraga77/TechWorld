@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:projeto/config_service.dart';
 import 'package:projeto/settings_page.dart';
 import 'home_page.dart';
 import 'details_page.dart';
-import 'package:projeto/config_service.dart';
+import 'translations.dart';
+import 'package:get/get.dart';
+
 
 
 void main() async {
@@ -27,6 +29,18 @@ class MyApp extends StatelessWidget {
           title: 'TechWorld',
           debugShowCheckedModeBanner: false,
           theme: currentTheme,
+
+          translations: AppTranslations(),
+
+          locale: const Locale(
+            'pt',
+            'BR',
+          ),
+
+          fallbackLocale: const Locale(
+            'pt',
+            'BR',
+          ),
 
           //receita 9a - estrutura de rotas usando getPages
           initialRoute: '/',

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'news_service.dart';
 import 'sidebar.dart';
-import 'package:projeto/config_service.dart';
 import 'search_bar.dart';
 
 class HomePage extends StatefulWidget {
