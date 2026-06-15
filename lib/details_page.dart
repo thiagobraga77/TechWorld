@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:projeto/config_service.dart';
 
 class DetailsPage extends StatelessWidget {
   const DetailsPage({super.key});
@@ -10,7 +11,7 @@ class DetailsPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Detalhes da Matéria'),
+        title: Text("Detalhes da Matéria"),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),

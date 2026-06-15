@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'news_service.dart';
 import 'sidebar.dart';
+import 'package:projeto/config_service.dart';
 import 'search_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -129,22 +130,24 @@ class _HomePageState extends State<HomePage> {
                                     );
                                   },
                                 ),
-                              ),
-                              title: Text(
-                                noticia['titulo']!,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              subtitle: Text(
-                                noticia['descricao']!,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              onTap: () {
-                                Get.toNamed('/details', arguments: noticia);
-                              },
-                            ),
-                          );
+                              );
+                            },
+                          ),
+                        ),
+                        title: Text(
+                          noticia['titulo']!,
+                          style: Theme.of(context).textTheme.titleMedium,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        subtitle: Text(
+                          noticia['descricao']!,
+                          style: Theme.of(context).textTheme.titleSmall,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        onTap: () {
+                          Get.toNamed('/details', arguments: noticia);
                         },
                       ),
                     ),

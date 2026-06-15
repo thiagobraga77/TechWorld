@@ -5,12 +5,13 @@ import 'home_page.dart';
 import 'details_page.dart';
 import 'package:projeto/config_service.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(const MyApp());
-
   await configService.loadTheme();
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
