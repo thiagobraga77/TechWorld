@@ -39,7 +39,8 @@ class LanguageService {
     }
     await saveLanguage(language);
   }
+}
 
 final languageService = LanguageService();
 
-}
+

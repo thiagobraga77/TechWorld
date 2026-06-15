@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SearchBarWidget extends StatelessWidget {
   final TextEditingController controller;
@@ -20,7 +21,7 @@ class SearchBarWidget extends StatelessWidget {
         controller: controller,
         onChanged: onChanged,
         decoration: InputDecoration(
-          hintText: 'Pesquisar notícias...',
+          hintText: 'search_hint'.tr,
           prefixIcon: const Icon(Icons.search),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.0),

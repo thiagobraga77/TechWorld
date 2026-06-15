@@ -8,12 +8,29 @@ class NewsService {
   final ValueNotifier<List<Map<String, String>>> stateNotifier = ValueNotifier([]);
   final ValueNotifier<bool> loadingNotifier = ValueNotifier(false);
 
+  //  gerenciadores de estado para a barra de pesquisa
+  final ValueNotifier<String> termoPesquisaNotifier = ValueNotifier('');
+  final TextEditingController searchController = TextEditingController();
+
   // endereço api
   final String apiUrl = 'https://gnews.io/api/v4/top-headlines?category=general&apikey=802aa8d8a879c202cf4ccfb726704dbc';
 
   int _paginaAtual = 1;
   String _idioma = 'pt';
 
+  NewsService() {
+    carregarNoticias(isRefresh: true);
+  }
+
+  // pesuisa e atualização do termo de pesquisa
+  void atualizarPesquisa(String termo) {
+    termoPesquisaNotifier.value = termo;
+  }
+
+  void limparPesquisa() {
+    searchController.clear();
+    termoPesquisaNotifier.value = '';
+  }
 
   Future<void> carregarNoticias({bool isRefresh = false, String? novoIdioma}) async {
     if (novoIdioma != null) {
@@ -42,7 +59,7 @@ class NewsService {
             "titulo": artigo['title']?.toString() ?? 'Sem título',
             "descricao": artigo['description']?.toString() ?? 'Sem descrição',
             "conteudo": artigo['content']?.toString() ?? 'Sem conteúdo',
-            "image": artigo['image']?.toString() ?? 'https://via.placeholder.com/150',
+            "image": artigo['image']?.toString() ?? '',
           };
         }).toList();
 
