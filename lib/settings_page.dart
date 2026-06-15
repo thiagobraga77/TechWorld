@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'sidebar.dart';
 import 'package:projeto/config_service.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -8,15 +9,19 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Configurações")),
+      appBar: AppBar(
+        title: Text(
+          "Configurações",
+        )
+      ),
 
       body: ListView(
         padding: const EdgeInsets.all(16),
 
         children: [
-          const Text(
+          Text(
             "Configurações Gerais",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: Theme.of(context).textTheme.headlineSmall,
           ),
 
           const SizedBox(height: 16),
@@ -26,14 +31,22 @@ class SettingsPage extends StatelessWidget {
               Get.back();
               Get.toNamed('/');
             },
-            icon: const Icon(Icons.arrow_back),
-            label: const Text("Voltar ao menu"),
+            icon: const Icon(
+              Icons.arrow_back,
+              ),
+            label: Text(
+              "Voltar ao menu",
+              style: Theme.of(context).textTheme.bodyMedium
+            ),
           ),
 
           Card(
             child: ExpansionTile(
               leading: const Icon(Icons.palette),
-              title: const Text("TEMAS"),
+              title: Text(
+                "Temas",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
 
               children: [
                 ValueListenableBuilder(
@@ -45,11 +58,11 @@ class SettingsPage extends StatelessWidget {
                           title: const Text("Claro"),
 
                           trailing: currentTheme == "light"
-                              ? const Icon(Icons.check)
+                              ? const Icon(Icons.check_box)
                               : null,
 
                           onTap: () {
-                            configService.setLightTheme();
+                            configService.applyTheme("light");
                           },
                         ),
 
@@ -61,7 +74,7 @@ class SettingsPage extends StatelessWidget {
                               : null,
 
                           onTap: () {
-                            configService.setBlackTheme();
+                            configService.applyTheme("black");
                           },
                         ),
                       ],
@@ -77,7 +90,10 @@ class SettingsPage extends StatelessWidget {
           Card(
             child: ListTile(
               leading: const Icon(Icons.language),
-              title: const Text("Idioma"),
+              title: Text(
+                "Idioma",
+                style: Theme.of(context).textTheme.titleMedium
+              ),
               subtitle: const Text("Escolha o idioma do aplicativo"),
               trailing: const Icon(Icons.arrow_forward_ios),
               onTap: () {
@@ -87,6 +103,9 @@ class SettingsPage extends StatelessWidget {
           ),
         ],
       ),
+
+    drawer: const AppDrawer(),
+
     );
   }
 }
