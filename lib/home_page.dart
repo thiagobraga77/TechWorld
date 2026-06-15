@@ -40,7 +40,11 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
+
+      
       drawer: const AppDrawer(),
+
+
       body: ValueListenableBuilder<bool>(
         valueListenable: newsService.loadingNotifier,
         builder: (context, isLoading, child) {

@@ -3,6 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ConfigService {
   static const String themeKey = "select_theme";
+  static const String lightTheme = "light";
+  static const String blackTheme = "black";
   final ValueNotifier<ThemeData> themeNotifier = ValueNotifier(_lightTheme());
   final ValueNotifier<String> currentThemeName = ValueNotifier("light");
 
@@ -24,11 +26,13 @@ class ConfigService {
   }
 
   ThemeData _getTheme(String themeName) {
-    if (themeName == "black") {
-      return _blackTheme();
-    } else {
-      return _lightTheme();
-    }
+    final Map<String, ThemeData Function()> themes = {
+      lightTheme: _lightTheme,
+      blackTheme: _blackTheme,
+    };
+
+    return themes[themeName] != null ? themes[themeName]!() : _lightTheme();
+
   }
 
   Future<void> applyTheme(String themeName) async {
@@ -52,12 +56,17 @@ class ConfigService {
 
       cardTheme: CardThemeData(color: Colors.blue),
 
+      drawerTheme: DrawerThemeData(backgroundColor: Colors.white),
+
+      iconTheme: IconThemeData(color: Colors.blue),
+
+      listTileTheme: ListTileThemeData(
+        textColor: Colors.black,
+        iconColor: Colors.blue,
+      ),
+
       textTheme: const TextTheme(
-        headlineSmall: TextStyle(
-          color: Colors.black,
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-        ),
+        headlineSmall: TextStyle(color: Colors.black, fontSize: 20),
 
         bodyLarge: TextStyle(color: Colors.black),
 
@@ -65,7 +74,11 @@ class ConfigService {
 
         bodySmall: TextStyle(color: Colors.black),
 
-        titleMedium: TextStyle(color: Colors.white)
+        titleLarge: TextStyle(color: Colors.white, fontSize: 24),
+
+        titleMedium: TextStyle(color: Colors.white),
+
+        titleSmall: TextStyle(color: Colors.white),
       ),
     );
   }
@@ -77,24 +90,31 @@ class ConfigService {
       scaffoldBackgroundColor: Colors.black,
 
       appBarTheme: AppBarTheme(
-        backgroundColor: Colors.blue.shade900,
-        foregroundColor: Colors.white,
+        backgroundColor: Colors.grey.shade900,
+        foregroundColor: Colors.grey,
       ),
 
-      cardTheme: CardThemeData(color: Colors.blue.shade900),
+      cardTheme: CardThemeData(color: Colors.grey.shade900),
+
+      drawerTheme: DrawerThemeData(backgroundColor: Colors.black),
+
+      iconTheme: IconThemeData(color: Colors.white),
+
+      listTileTheme: ListTileThemeData(
+        textColor: Colors.grey,
+        iconColor: Colors.grey,
+      ),
 
       textTheme: const TextTheme(
-        headlineSmall: TextStyle(
-          color: Colors.deepPurple,
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-        ),
+        headlineSmall: TextStyle(color: Colors.grey, fontSize: 20),
 
-        bodyLarge: TextStyle(color: Colors.purple),
+        bodyLarge: TextStyle(color: Colors.white),
 
-        bodyMedium: TextStyle(color: Colors.purple),
+        bodyMedium: TextStyle(color: Colors.white),
 
-        bodySmall: TextStyle(color: Colors.purple),
+        bodySmall: TextStyle(color: Colors.white),
+
+        titleLarge: TextStyle(color: Colors.white, fontSize: 24),
 
         titleMedium: TextStyle(color: Colors.white),
 
@@ -104,11 +124,11 @@ class ConfigService {
   }
 
   Future<void> setBlackTheme() async {
-    await applyTheme("black");
+    await applyTheme(blackTheme);
   }
 
   Future<void> setLightTheme() async {
-    await applyTheme("light");
+    await applyTheme(lightTheme);
   }
 }
 

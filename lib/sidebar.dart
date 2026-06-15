@@ -18,14 +18,14 @@ class AppDrawer extends StatelessWidget {
             ),
             child: Text(
               "app_title".tr,
-              style: const TextStyle(color: Colors.white, fontSize: 24),
+              style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
           
           ListTile(
             // Se a rota atual for a raiz ('/'), o botão fica "aceso"
             selected: currentRoute == '/',
-            selectedColor: Colors.blueAccent,
+            selectedColor: Theme.of(context).listTileTheme.textColor,
             leading: const Icon(Icons.home),
             title: Text("home".tr),
             onTap: () {
@@ -36,7 +36,7 @@ class AppDrawer extends StatelessWidget {
           
           ListTile(
             selected: currentRoute == '/about',
-            selectedColor: Colors.blueAccent,
+            selectedColor: Theme.of(context).listTileTheme.textColor,
             leading: const Icon(Icons.info),
             title: Text("about".tr),
             onTap: () {
@@ -47,7 +47,7 @@ class AppDrawer extends StatelessWidget {
 
           ListTile(
             selected: currentRoute == '/settings',
-            selectedColor: Colors.blueAccent,
+            selectedColor: Theme.of(context).listTileTheme.textColor,
             leading: const Icon(Icons.settings),
             title: Text("settings".tr),
             onTap: () {

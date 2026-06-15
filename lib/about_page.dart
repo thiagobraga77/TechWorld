@@ -8,30 +8,23 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("about".tr),
-      ),
+      appBar: AppBar(title: Text("about".tr)),
       drawer: const AppDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             const SizedBox(height: 20),
-            const Icon(Icons.info_outline, size: 80, color: Colors.blueAccent),
-            const SizedBox(height: 16),
-            Text(
-              "app_title".tr,
-              style: Theme.of(context).textTheme.headlineSmall,
-            ),
-            const SizedBox(height: 40),
-            
+            Image.asset("assets/logo.png", width: 400),
+            const SizedBox(height: 10),
+            const SizedBox(height: 25),
+
             Text(
               "collaborators".tr,
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
 
-            
             const Card(
               child: Column(
                 children: [
@@ -57,9 +50,9 @@ class AboutPage extends StatelessWidget {
             const Text(
               "@TechWorld",
               style: TextStyle(
-                fontSize: 16, 
-                color: Colors.grey, 
-                fontWeight: FontWeight.bold
+                fontSize: 16,
+                color: Colors.grey,
+                fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 10),
