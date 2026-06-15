@@ -33,11 +33,11 @@ class _HomePageState extends State<HomePage> {
             itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
               const PopupMenuItem<String>(
                 value: 'pt',
-                child: const Text('Notícias em Português'),
+                child: Text('Notícias em Português'),
               ),
               const PopupMenuItem<String>(
                 value: 'en',
-                child: const Text('Notícias em Inglês'),
+                child: Text('Notícias em Inglês'),
               ),
             ],
           ),
@@ -70,9 +70,13 @@ class _HomePageState extends State<HomePage> {
 
               final noticiasFiltradas = _termoPesquisa.isEmpty
                   ? noticias
-                  : noticias.where((noticia) => (noticia['titulo'] ?? '')
-                      .toLowerCase()
-                      .contains(_termoPesquisa.toLowerCase())).toList();
+                  : noticias
+                      .where(
+                        (noticia) => (noticia['titulo'] ?? '')
+                            .toLowerCase()
+                            .contains(_termoPesquisa.toLowerCase()),
+                      )
+                      .toList();
 
               return Column(
                 children: [
@@ -117,7 +121,8 @@ class _HomePageState extends State<HomePage> {
                                   width: 80,
                                   height: 80,
                                   fit: BoxFit.cover,
-                                  errorBuilder: (context, error, stackTrace) {
+                                  errorBuilder:
+                                      (context, error, stackTrace) {
                                     return Container(
                                       width: 80,
                                       height: 80,
@@ -130,24 +135,30 @@ class _HomePageState extends State<HomePage> {
                                     );
                                   },
                                 ),
-                              );
-                            },
-                          ),
-                        ),
-                        title: Text(
-                          noticia['titulo']!,
-                          style: Theme.of(context).textTheme.titleMedium,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        subtitle: Text(
-                          noticia['descricao']!,
-                          style: Theme.of(context).textTheme.titleSmall,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        onTap: () {
-                          Get.toNamed('/details', arguments: noticia);
+                              ),
+                              title: Text(
+                                noticia['titulo']!,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              subtitle: Text(
+                                noticia['descricao']!,
+                                style:
+                                    Theme.of(context).textTheme.titleSmall,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              onTap: () {
+                                Get.toNamed(
+                                  '/details',
+                                  arguments: noticia,
+                                );
+                              },
+                            ),
+                          );
                         },
                       ),
                     ),
