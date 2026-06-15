@@ -1,17 +1,18 @@
-# projeto
+# 🌐 TechWorld News App
 
-A new Flutter project.
+O TechWorld é um aplicativo de notícias moderno e bilíngue (Português e Inglês) desenvolvido para dispositivos móveis. O sistema consome dados em tempo real através da API da GNews, oferecendo um feed de manchetes atualizado com suporte a pesquisa, filtro por categorias, rolagem contínua (infinite scroll) e troca de temas (claro/escuro), mantendo as preferências do usuário salvas localmente no dispositivo.
 
-## Getting Started
+## 🛠️ Tecnologias Utilizadas
 
-This project is a starting point for a Flutter application.
+* **[Flutter](https://flutter.dev/):** Framework principal para a construção da interface do aplicativo.
+* **Dart:** Linguagem de programação base do projeto.
+* **[http](https://pub.dev/packages/http):** Pacote utilizado para requisições assíncronas e consumo da API RESTful.
+* **[get (GetX)](https://pub.dev/packages/get):** Utilizado para o roteamento de telas e sistema de internacionalização (tradução simultânea).
+* **[shared_preferences](https://pub.dev/packages/shared_preferences):** Armazenamento local para salvar as configurações de tema e idioma escolhidas pelo usuário.
 
-A few resources to get you started if this is your first Flutter project:
+## 👥 Equipe de Desenvolvimento
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Projeto desenvolvido de forma colaborativa por:
+* **Thiago Alexandre Braga de Medeiros**
+* **Marcos Vinícius Dantas da Silva**
+* **Thiago Gomes de Oliveira**

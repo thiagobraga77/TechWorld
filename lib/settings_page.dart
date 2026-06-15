@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'sidebar.dart';
 import 'package:projeto/config_service.dart';
+import 'package:projeto/language_service.dart';
+
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -10,9 +12,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "settings".tr,
-        )
+        title: Text("settings".tr)
       ),
 
       body: ListView(
@@ -20,7 +20,7 @@ class SettingsPage extends StatelessWidget {
 
         children: [
           Text(
-            "Configurações Gerais",
+            "gen_settings".tr,
             style: Theme.of(context).textTheme.headlineSmall,
           ),
 
@@ -31,11 +31,9 @@ class SettingsPage extends StatelessWidget {
               Get.back();
               Get.toNamed('/');
             },
-            icon: const Icon(
-              Icons.arrow_back,
-              ),
+            icon: const Icon(Icons.arrow_back),
             label: Text(
-              "Voltar ao menu",
+              "back".tr,
               style: Theme.of(context).textTheme.bodyMedium
             ),
           ),
@@ -44,7 +42,7 @@ class SettingsPage extends StatelessWidget {
             child: ExpansionTile(
               leading: const Icon(Icons.palette),
               title: Text(
-                "Temas",
+                "themes".tr,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
 
@@ -55,24 +53,15 @@ class SettingsPage extends StatelessWidget {
                     return Column(
                       children: [
                         ListTile(
-                          title: const Text("Claro"),
-
-                          trailing: currentTheme == "light"
-                              ? const Icon(Icons.check_box)
-                              : null,
-
+                          title: Text("light".tr),
+                          trailing: currentTheme == "light" ? const Icon(Icons.check_box) : null,
                           onTap: () {
                             configService.applyTheme("light");
                           },
                         ),
-
                         ListTile(
-                          title: const Text("Escuro"),
-
-                          trailing: currentTheme == "black"
-                              ? const Icon(Icons.check_box)
-                              : null,
-
+                          title: Text("dark".tr),
+                          trailing: currentTheme == "black" ? const Icon(Icons.check_box) : null,
                           onTap: () {
                             configService.applyTheme("black");
                           },
@@ -88,24 +77,45 @@ class SettingsPage extends StatelessWidget {
           const SizedBox(height: 12),
 
           Card(
-            child: ListTile(
+            child: ExpansionTile(
               leading: const Icon(Icons.language),
               title: Text(
-                "Idioma",
+                "language".tr,
                 style: Theme.of(context).textTheme.titleMedium
               ),
-              subtitle: const Text("Escolha o idioma do aplicativo"),
-              trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: () {
-                // Implementar futuramente
-              },
+              subtitle: Text("choose_lang".tr),
+              
+              children: [
+                ValueListenableBuilder(
+                  valueListenable: languageService.currentLanguage,
+                  builder: (context, currentLanguage, child) {
+                    return Column(
+                      children: [
+                        ListTile(
+                          title: const Text("Português (Brasil)"),
+                          trailing: currentLanguage == "pt_BR" ? const Icon(Icons.check_box) : null,
+                          onTap: () {
+                            languageService.applyLanguage("pt_BR");
+                          },
+                        ),
+                        ListTile(
+                          title: const Text("English (US)"),
+                          trailing: currentLanguage == "en_US" ? const Icon(Icons.check_box) : null,
+                          onTap: () {
+                            languageService.applyLanguage("en_US");
+                          },
+                        ),
+                      ],
+                    );
+                  }
+                )
+              ],
             ),
           ),
         ],
       ),
 
-    drawer: const AppDrawer(),
-
+      drawer: const AppDrawer(),
     );
   }
 }

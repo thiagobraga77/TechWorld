@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class DetailsPage extends StatelessWidget {
   const DetailsPage({super.key});
 
@@ -11,7 +10,7 @@ class DetailsPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Detalhes da Matéria"),
+        title: Text("details".tr),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -28,8 +27,7 @@ class DetailsPage extends StatelessWidget {
             const SizedBox(height: 20),
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: noticia["image"] != null &&
-                      noticia["image"]!.isNotEmpty
+              child: noticia["image"] != null && noticia["image"]!.isNotEmpty
                   ? Image.network(
                       noticia["image"]!,
                       height: 200,
@@ -40,22 +38,12 @@ class DetailsPage extends StatelessWidget {
                           height: 200,
                           width: double.infinity,
                           color: Colors.grey[300],
-                          child: const Column(
+                          child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(
-                                Icons.article,
-                                size: 60,
-                                color: Colors.grey,
-                              ),
-                              SizedBox(height: 8),
-                              Text(
-                                'Imagem não disponível',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 16,
-                                ),
-                              ),
+                              const Icon(Icons.article, size: 60, color: Colors.grey),
+                              const SizedBox(height: 8),
+                              Text('no_image'.tr, style: const TextStyle(color: Colors.grey, fontSize: 16)),
                             ],
                           ),
                         );
@@ -65,22 +53,12 @@ class DetailsPage extends StatelessWidget {
                       height: 200,
                       width: double.infinity,
                       color: Colors.grey[300],
-                      child: const Column(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
-                            Icons.article,
-                            size: 60,
-                            color: Colors.grey,
-                          ),
-                          SizedBox(height: 8),
-                          Text(
-                            'Imagem não disponível',
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 16,
-                            ),
-                          ),
+                          const Icon(Icons.article, size: 60, color: Colors.grey),
+                          const SizedBox(height: 8),
+                          Text('no_image'.tr, style: const TextStyle(color: Colors.grey, fontSize: 16)),
                         ],
                       ),
                     ),

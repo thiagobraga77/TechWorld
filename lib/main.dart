@@ -5,6 +5,7 @@ import 'home_page.dart';
 import 'details_page.dart';
 import 'translations.dart';
 import 'package:get/get.dart';
+import 'about_page.dart';
 
 
 
@@ -52,10 +53,8 @@ class MyApp extends StatelessWidget {
             // rotas temporárias para se caso der erro ao acessar o menu lateral
             GetPage(name: '/news', page: () => const HomePage()),
 
-            GetPage(
-              name: '/settings',
-              page: () => const SettingsPage(),
-            ), // rota para a home, caso queira acessar diretamente
+            GetPage(name: '/settings',page: () => const SettingsPage()),
+            GetPage(name: '/about', page: () => const AboutPage()) // rota para a home, caso queira acessar diretamente
           ],
         );
       },
