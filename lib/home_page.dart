@@ -13,25 +13,6 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('app_title'.tr),
         actions: [
-          PopupMenuButton<String>(
-            icon: const Icon(Icons.language),
-            onSelected: (String idiomaEscolhido) {
-              newsService.carregarNoticias(
-                isRefresh: true,
-                novoIdioma: idiomaEscolhido,
-              );
-            },
-            itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-              PopupMenuItem<String>(
-                value: 'pt',
-                child: Text('pt_news'.tr),
-              ),
-              PopupMenuItem<String>(
-                value: 'en',
-                child: Text('en_news'.tr),
-              ),
-            ],
-          ),
           IconButton(
             icon: const Icon(Icons.refresh),
             onPressed: () {

@@ -65,6 +65,7 @@ class ConfigService {
         iconColor: Colors.blue,
       ),
 
+
       textTheme: const TextTheme(
         headlineSmall: TextStyle(color: Colors.black, fontSize: 20),
 

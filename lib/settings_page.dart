@@ -45,6 +45,9 @@ class SettingsPage extends StatelessWidget {
                 "themes".tr,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
+              subtitle: Text(
+                "choose_them".tr,
+              ),
 
               children: [
                 ValueListenableBuilder(
