@@ -16,3 +16,65 @@ Projeto desenvolvido de forma colaborativa por:
 * **Thiago Alexandre Braga de Medeiros**
 * **Marcos Vinícius Dantas da Silva**
 * **Thiago Gomes de Oliveira**
+
+* ## 🚀 Como Executar o Projeto
+
+### 1. Clonar o Repositório
+
+Clone o projeto para sua máquina local utilizando o comando:
+
+```bash
+git clone https://github.com/thiagobraga77/TechWorld.git
+```
+
+### 2. Acessar a Pasta do Projeto
+
+Entre no diretório do projeto:
+
+```bash
+cd TechWorld
+```
+
+### 3. Instalar as Dependências
+
+Execute o comando abaixo para baixar todas as dependências necessárias definidas no arquivo `pubspec.yaml`:
+
+```bash
+flutter pub get
+```
+
+### 4. Verificar a Instalação do Flutter
+
+Opcionalmente, verifique se o ambiente Flutter está configurado corretamente:
+
+```bash
+flutter doctor
+```
+
+### 5. Executar a Aplicação
+
+Inicie a aplicação utilizando um servidor web local:
+
+```bash
+flutter run -d web-server
+```
+
+Após a execução, o terminal exibirá uma mensagem semelhante a:
+
+```text
+Flutter Web Server listening at:
+http://localhost:54321
+```
+
+### 6. Abrir no Navegador
+
+Copie o endereço exibido pelo terminal e cole na barra de endereços do navegador (Google Chrome, Firefox ou outro navegador compatível).
+
+Exemplo:
+
+```text
+http://localhost:54321
+```
+
+A aplicação será carregada e estará pronta para utilização.
+
