@@ -12,9 +12,6 @@ class NewsService {
   final ValueNotifier<String> termoPesquisaNotifier = ValueNotifier('');
   final TextEditingController searchController = TextEditingController();
 
-  // endereço api
-  final String apiUrl = 'https://gnews.io/api/v4/top-headlines?category=general&apikey=802aa8d8a879c202cf4ccfb726704dbc';
-
   int _paginaAtual = 1;
   String _idioma = 'pt';
 
@@ -22,7 +19,7 @@ class NewsService {
     carregarNoticias(isRefresh: true);
   }
 
-  // pesuisa e atualização do termo de pesquisa
+  // pesquisa e atualização do termo de pesquisa
   void atualizarPesquisa(String termo) {
     termoPesquisaNotifier.value = termo;
   }
@@ -44,8 +41,19 @@ class NewsService {
       _paginaAtual++; 
     }
 
-    // concatenando a apiurl base com os filtros 
-    var url = Uri.parse('$apiUrl&lang=$_idioma&page=$_paginaAtual&max=10');
+    // APLICANDO A RECEITA DO PROFESSOR COM A GNEWS
+    var url = Uri(
+      scheme: 'https',
+      host: 'gnews.io',
+      path: '/api/v4/top-headlines',
+      queryParameters: {
+        'category': 'general',
+        'apikey': '802aa8d8a879c202cf4ccfb726704dbc', 
+        'lang': _idioma,
+        'page': _paginaAtual.toString(),
+        'max': '10',
+      },
+    );
 
     try {
       var response = await http.get(url);
@@ -81,5 +89,5 @@ class NewsService {
   }
 }
 
-//instância global
+// instância global
 final newsService = NewsService();
