@@ -41,7 +41,6 @@ class NewsService {
       _paginaAtual++; 
     }
 
-    // APLICANDO A RECEITA DO PROFESSOR COM A GNEWS
     var url = Uri(
       scheme: 'https',
       host: 'gnews.io',
@@ -54,6 +53,8 @@ class NewsService {
         'max': '10',
       },
     );
+
+    
 
     try {
       var response = await http.get(url);
