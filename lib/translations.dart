@@ -44,8 +44,8 @@ class AppTranslations extends Translations {
           "search_hint": "Search news...",
           "details": "Article Details",
           "no_image": "Image not available",
-          "about": "Sobre",
-          "collaborators": "Colaboradores"
+          "about": "About",
+          "collaborators": "Collaborators"
         },
       };
 }
